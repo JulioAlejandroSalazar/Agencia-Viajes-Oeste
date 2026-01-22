@@ -14,3 +14,19 @@ export async function login(email, password) {
     throw new Error("Credenciales inválidas");
   }
 }
+
+export async function register(email, password) {
+  try {
+    const response = await api.post("/auth/register", {
+      email,
+      password,
+    });
+
+    return response.data;
+  } catch (error) {
+    if (error.response?.data?.message) {
+      throw new Error(error.response.data.message);
+    }
+    throw new Error("Error al registrar usuario");
+  }
+}
