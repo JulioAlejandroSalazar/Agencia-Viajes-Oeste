@@ -5,6 +5,7 @@ import Register from "./pages/Register"
 import Home from "./pages/Home"
 import GithubCallback from "./pages/GithubCallback"
 import ProtectedRoute from "./components/ProtectedRoute"
+import Solicitudes from "./pages/Solicitudes"
 
 function App() {
   return (
@@ -18,6 +19,14 @@ function App() {
         element={
           <ProtectedRoute>
             <Home />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/solicitudes"
+        element={
+          <ProtectedRoute>
+            <Solicitudes />
           </ProtectedRoute>
         }
       />

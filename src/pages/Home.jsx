@@ -38,32 +38,51 @@ export default function Home() {
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-      <div className="bg-white p-10 rounded-xl shadow-md text-center">
-        <h1 className="text-3xl font-bold mb-4 text-gray-800">
+      <div className="bg-white p-10 rounded-xl shadow-md text-center space-y-4">
+        <h1 className="text-3xl font-bold text-gray-800">
           ¡Bienvenido!
         </h1>
 
         {user && (
           <>
-            <p className="text-gray-700 mb-2">
+            <p className="text-gray-700">
               <strong>Email:</strong> {user.email}
             </p>
-            <p className="text-gray-500 mb-6 text-sm">
+            <p className="text-gray-500 text-sm">
               Usuario ID: {user.id}
             </p>
           </>
         )}
 
-        <p className="text-gray-600 mb-6">
+        <p className="text-gray-600">
           Has iniciado sesión correctamente.
         </p>
 
-        <button
-          onClick={logout}
-          className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition"
-        >
-          Cerrar sesión
-        </button>
+        <div className="flex flex-col gap-3">
+          <button
+            onClick={() => navigate("/solicitudes")}
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
+          >
+            Registrar solicitud
+          </button>
+
+          <button
+            onClick={() =>
+              (window.location.href =
+                "http://localhost:3001/api/solicitudes/ssr")
+            }
+            className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
+          >
+            Ver solicitudes (SSR)
+          </button>
+
+          <button
+            onClick={logout}
+            className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition"
+          >
+            Cerrar sesión
+          </button>
+        </div>
       </div>
     </div>
   )
