@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useNavigate, Link } from "react-router-dom"
 import AuthLayout from "../components/AuthLayout"
 import { login } from "../api/auth"
+import { registerSchema } from "../validations/registerSchema";
 
 export default function Login() {
   const [email, setEmail] = useState("")
@@ -13,10 +14,12 @@ export default function Login() {
     e.preventDefault()
     setError("")
 
-    if (!email || !password) {
-      setError("Todos los campos son obligatorios")
-      return
-    }
+  const result = registerSchema.safeParse({ email, password });
+
+  if (!result.success) {
+    setError(result.error.errors[0].message);
+    return;
+  }
 
     try {
       const data = await login(email, password)
